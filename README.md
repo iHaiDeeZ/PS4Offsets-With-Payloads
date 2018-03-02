@@ -1,4 +1,4 @@
-# PS4Offsets
+# PS4Offsets & Payloads 1.76/4.05/4.55
 
 <p align="center">
 🔥 PS4Offsets ~ Use these offsets if you need to update yuor old payloads. 🔥
