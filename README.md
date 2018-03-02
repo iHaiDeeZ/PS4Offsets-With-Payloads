@@ -8,9 +8,11 @@
   
 ``` 
 //4.55 KERN
-#define	KERN_XFAST_SYSCALL	0x3095D
-#define KERN_PRISON_0		0x10399B0
-#define KERN_ROOTVNODE		0x21AFA30
+#define	KERN_XFAST_SYSCALL 0x3095D0
+#define KERN_PROCESS_ASLR 0x1BA559
+#define KERN_PRISON_0 0x10399B0
+#define KERN_ROOTVNODE 0x21AFA30
+#define KERN_PTRACE_CHECK 0x17D2C1
 
 //Reading 4.55 kernel_base...
 void* kernel_base = &((uint8_t*)__readmsr(0xC0000082))[-KERN_XFAST_SYSCALL];
