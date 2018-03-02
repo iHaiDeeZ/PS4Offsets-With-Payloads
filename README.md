@@ -44,6 +44,7 @@ kernelBase[0x1B6D0C8] |= 0x1;
 //EAP Internal Partition Key
 kernelBase[0x258CCD0]
 ```
+Make pull request is anything is missing or want adding to.
 
 ## Contributors
 Massive credits to the following:
