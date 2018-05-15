@@ -46,6 +46,34 @@ kernelBase[0x1B6D0C8] |= 0x1;
 //EAP Internal Partition Key
 kernelBase[0x258CCD0]
 ```
+# 5.01 Offsets
+
+```
+// debug settings patches 5.01
+	*(char *)(kernel_base + 0x1CD0686) |= 0x14;
+	*(char *)(kernel_base + 0x1CD06A9) |= 3;
+	*(char *)(kernel_base + 0x1CD06AA) |= 1;
+	*(char *)(kernel_base + 0x1CD06C8) |= 1;
+
+	// debug menu full patches 5.01
+	*(uint32_t *)(kernel_base + 0x543FB0) = 0;
+	*(uint32_t *)(kernel_base + 0x51D39A) = 0;
+
+	// enable mmap of all SELF 5.01
+	*(uint8_t*)(kernel_base + 0x117B0) = 0xB0;
+	*(uint8_t*)(kernel_base + 0x117B1) = 0x01;
+	*(uint8_t*)(kernel_base + 0x117B2) = 0xC3;
+
+	*(uint8_t*)(kernel_base + 0x117C0) = 0xB0;
+	*(uint8_t*)(kernel_base + 0x117C1) = 0x01;
+	*(uint8_t*)(kernel_base + 0x117C2) = 0xC3;
+
+	*(uint8_t*)(kernel_base + 0x13EF2F) = 0x31;
+	*(uint8_t*)(kernel_base + 0x13EF30) = 0xC0;
+	*(uint8_t*)(kernel_base + 0x13EF31) = 0x90;
+	*(uint8_t*)(kernel_base + 0x13EF32) = 0x90;
+	*(uint8_t*)(kernel_base + 0x13EF33) = 0x90;
+```
 Please make an pull request for anything that is missing or want to add something.
 
 ## Contributors
