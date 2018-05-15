@@ -49,6 +49,11 @@ kernelBase[0x258CCD0]
 # 5.01 Offsets
 
 ```
+
+KERN_XFAST_SYSCALL 0x1C0 //5.01 https://twitter.com/C0rpVultra/status/992789973966512133
+KERN_PRISON_0		0x10986A0 //5.01
+KERN_ROOTVNODE		0x22C19F0 //5.01
+
 // debug settings patches 5.01
 	*(char *)(kernel_base + 0x1CD0686) |= 0x14;
 	*(char *)(kernel_base + 0x1CD06A9) |= 3;
