@@ -53,6 +53,11 @@ kernelBase[0x258CCD0]
 KERN_XFAST_SYSCALL 0x1C0 //5.01 https://twitter.com/C0rpVultra/status/992789973966512133
 KERN_PRISON_0		0x10986A0 //5.01
 KERN_ROOTVNODE		0x22C19F0 //5.01
+KERN_PMAP_PROTECT	0x2E2D00
+KERN_PMAP_PROTECT_P	0x2E2D44
+KERN_PMAP_STORE		0x22CB4F0
+KERN_REGMGR_SETINT	0x4F8940
+DT_HASH_SEGMENT		0xB5EE20
 
 // debug settings patches 5.01
 	*(char *)(kernel_base + 0x1CD0686) |= 0x14;
@@ -60,9 +65,16 @@ KERN_ROOTVNODE		0x22C19F0 //5.01
 	*(char *)(kernel_base + 0x1CD06AA) |= 1;
 	*(char *)(kernel_base + 0x1CD06C8) |= 1;
 
-	// debug menu full patches 5.01
-	*(uint32_t *)(kernel_base + 0x543FB0) = 0;
-	*(uint32_t *)(kernel_base + 0x51D39A) = 0;
+	// debug menu error patches 5.01
+  *(uint32_t *)(kernel_base + 0x4F8C78) = 0;
+  *(uint32_t *)(kernel_base + 0x4F9D8C) = 0;
+
+  // target_id patches 5.01
+  *(uint16_t *)(kernel_base + 0x1CD068C) = 0x8101;
+  *(uint16_t *)(kernel_base + 0x236B7FC) = 0x8101;
+
+  // disable pfs signature 5.01
+  *(uint32_t *)(kernel_base + 0x6A2320) = 0x90C3C031;
 
 	// enable mmap of all SELF 5.01
 	*(uint8_t*)(kernel_base + 0x117B0) = 0xB0;
