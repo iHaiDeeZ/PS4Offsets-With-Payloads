@@ -60,36 +60,36 @@ KERN_REGMGR_SETINT	0x4F8940
 DT_HASH_SEGMENT		0xB5EE20
 
 // debug settings patches 5.01
-	*(char *)(kernel_base + 0x1CD0686) |= 0x14;
-	*(char *)(kernel_base + 0x1CD06A9) |= 3;
-	*(char *)(kernel_base + 0x1CD06AA) |= 1;
-	*(char *)(kernel_base + 0x1CD06C8) |= 1;
+*(char *)(kernel_base + 0x1CD0686) |= 0x14;
+*(char *)(kernel_base + 0x1CD06A9) |= 3;
+*(char *)(kernel_base + 0x1CD06AA) |= 1;
+*(char *)(kernel_base + 0x1CD06C8) |= 1;
 
-	// debug menu error patches 5.01
-  *(uint32_t *)(kernel_base + 0x4F8C78) = 0;
-  *(uint32_t *)(kernel_base + 0x4F9D8C) = 0;
+// debug menu error patches 5.01
+*(uint32_t *)(kernel_base + 0x4F8C78) = 0;
+*(uint32_t *)(kernel_base + 0x4F9D8C) = 0;
 
-  // target_id patches 5.01
-  *(uint16_t *)(kernel_base + 0x1CD068C) = 0x8101;
-  *(uint16_t *)(kernel_base + 0x236B7FC) = 0x8101;
+// target_id patches 5.01
+*(uint16_t *)(kernel_base + 0x1CD068C) = 0x8101;
+*(uint16_t *)(kernel_base + 0x236B7FC) = 0x8101;
 
-  // disable pfs signature 5.01
-  *(uint32_t *)(kernel_base + 0x6A2320) = 0x90C3C031;
+// disable pfs signature 5.01
+*(uint32_t *)(kernel_base + 0x6A2320) = 0x90C3C031;
 
-	// enable mmap of all SELF 5.01
-	*(uint8_t*)(kernel_base + 0x117B0) = 0xB0;
-	*(uint8_t*)(kernel_base + 0x117B1) = 0x01;
-	*(uint8_t*)(kernel_base + 0x117B2) = 0xC3;
+// enable mmap of all SELF 5.01
+*(uint8_t*)(kernel_base + 0x117B0) = 0xB0;
+*(uint8_t*)(kernel_base + 0x117B1) = 0x01;
+*(uint8_t*)(kernel_base + 0x117B2) = 0xC3;
 
-	*(uint8_t*)(kernel_base + 0x117C0) = 0xB0;
-	*(uint8_t*)(kernel_base + 0x117C1) = 0x01;
-	*(uint8_t*)(kernel_base + 0x117C2) = 0xC3;
+*(uint8_t*)(kernel_base + 0x117C0) = 0xB0;
+*(uint8_t*)(kernel_base + 0x117C1) = 0x01;
+*(uint8_t*)(kernel_base + 0x117C2) = 0xC3;
 
-	*(uint8_t*)(kernel_base + 0x13EF2F) = 0x31;
-	*(uint8_t*)(kernel_base + 0x13EF30) = 0xC0;
-	*(uint8_t*)(kernel_base + 0x13EF31) = 0x90;
-	*(uint8_t*)(kernel_base + 0x13EF32) = 0x90;
-	*(uint8_t*)(kernel_base + 0x13EF33) = 0x90;
+*(uint8_t*)(kernel_base + 0x13EF2F) = 0x31;
+*(uint8_t*)(kernel_base + 0x13EF30) = 0xC0;
+*(uint8_t*)(kernel_base + 0x13EF31) = 0x90;
+*(uint8_t*)(kernel_base + 0x13EF32) = 0x90;
+*(uint8_t*)(kernel_base + 0x13EF33) = 0x90;
 ```
 Please make an pull request for anything that is missing or want to add something.
 
