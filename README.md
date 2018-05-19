@@ -50,14 +50,14 @@ kernelBase[0x258CCD0]
 
 ```
 
-KERN_XFAST_SYSCALL 0x1C0 //5.01 https://twitter.com/C0rpVultra/status/992789973966512133
+KERN_XFAST_SYSCALL 0x1C0 //5.0x https://twitter.com/C0rpVultra/status/992789973966512133
 KERN_PRISON_0		0x10986A0 //5.01
 KERN_ROOTVNODE		0x22C19F0 //5.01
-KERN_PMAP_PROTECT	0x2E2D00
-KERN_PMAP_PROTECT_P	0x2E2D44
-KERN_PMAP_STORE		0x22CB4F0
-KERN_REGMGR_SETINT	0x4F8940
-DT_HASH_SEGMENT		0xB5EE20
+KERN_PMAP_PROTECT	0x2E2D00 //5.01
+KERN_PMAP_PROTECT_P	0x2E2D44 //5.01
+KERN_PMAP_STORE		0x22CB4F0 //5.01
+KERN_REGMGR_SETINT	0x4F8940 //5.01
+DT_HASH_SEGMENT		0xB5EE20 //5.01
 
 // debug settings patches 5.01
 *(char *)(kernel_base + 0x1CD0686) |= 0x14;
@@ -90,6 +90,42 @@ DT_HASH_SEGMENT		0xB5EE20
 *(uint8_t*)(kernel_base + 0x13EF31) = 0x90;
 *(uint8_t*)(kernel_base + 0x13EF32) = 0x90;
 *(uint8_t*)(kernel_base + 0x13EF33) = 0x90;
+```
+# 5.05 Offsets Thanks to @J0nni3
+```
+KERN_XFAST_SYSCALL 0x1C0 //5.0x https://twitter.com/C0rpVultra/status/992789973966512133
+KERN_PRISON_0		
+KERN_ROOTVNODE		
+KERN_PMAP_PROTECT	0x2E3090 //5.05
+KERN_PMAP_PROTECT_P	
+KERN_PMAP_STORE	
+KERN_REGMGR_SETINT	
+DT_HASH_SEGMENT		
+
+#elif defined PS4_5_05 
+
+#define kern_off_printf                      0x436040
+#define kern_off_copyin                      0x1EA710
+#define kern_off_copyout                     0x1EA630
+#define kern_off_copyinstr                   0x1EAB40
+#define kern_off_kmem_alloc_contig           0xF1C90
+#define kern_off_kmem_free                  0xFCE50
+#define kern_off_pmap_extract               0x2E0570
+#define kern_off_pmap_protect               0x2E3090
+#define kern_off_sched_pin                  0x31FF40
+#define kern_off_sched_unpin                0x31FF50
+#define kern_off_smp_rendezvous             0x1B85B0
+#define kern_off_smp_no_rendevous_barrier   0x1B8366
+#define kern_off_icc_query_nowait           0x44020
+#define kern_off_kernel_map                 0x1AC60E0
+#define kern_off_sysent                      0x107C610
+#define kern_off_kernel_pmap_store          0x22CB570
+#define kern_off_Starsha_UcodeInfo 0
+#define kern_off_gpu_devid_is_9924          0x4DE010
+#define kern_off_gc_get_fw_info             0x4D37A0
+#define kern_off_pml4pml4i                  0x22CB560 // Pending verification.
+#define kern_off_dmpml4i                     0x22CB564
+#define kern_off_dmpdpi                     0x22CB568
 ```
 Please make an pull request for anything that is missing or want to add something.
 
