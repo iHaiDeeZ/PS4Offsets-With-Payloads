@@ -3,9 +3,14 @@
 <p align="center">
 🔥 PS4Offsets ~ Use these offsets if you need to update yuor old payloads. 🔥
   <br>
-  
-  # 4.55
-  
+</p>
+
+# 4.05
+```
+Will add soon.
+```
+
+# 4.55  
 ``` 
 //4.55 KERN
 #define	KERN_XFAST_SYSCALL 0x3095D0
@@ -145,7 +150,7 @@ DT_HASH_SEGMENT		0xB5EE20 //5.01
 
 #endif
 ```
-# 5.05 Offsets Thanks to @J0nni3
+# 5.05 Offsets
 ```
 KERN_XFAST_SYSCALL 0x1C0 //5.0x https://twitter.com/C0rpVultra/status/992789973966512133
 KERN_PRISON_0		
@@ -156,7 +161,7 @@ KERN_PMAP_STORE
 KERN_REGMGR_SETINT	
 DT_HASH_SEGMENT		
 
-#elif defined PS4_5_05 
+#elif defined PS4_5_05  Thanks to #J0nni3
 
 #define kern_off_printf                     0x436040
 #define kern_off_copyin                     0x1EA710
