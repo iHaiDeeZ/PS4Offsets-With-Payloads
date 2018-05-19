@@ -19,7 +19,7 @@ Will add soon.
 #define KERN_ROOTVNODE 0x21AFA30
 #define KERN_PTRACE_CHECK 0x17D2C1
 
-//Reading 4.55 kernel_base...
+//Reading kernel_base...
 void* kernel_base = &((uint8_t*)__readmsr(0xC0000082))[-KERN_XFAST_SYSCALL];
 uint8_t* kernel_ptr = (uint8_t*)kernel_base;
 void** got_prison0 =   (void**)&kernel_ptr[KERN_PRISON_0];
@@ -90,6 +90,25 @@ KERN_PMAP_STORE		0x22CB4F0 //5.01
 KERN_REGMGR_SETINT	0x4F8940 //5.01
 DT_HASH_SEGMENT		0xB5EE20 //5.01
 
+```
+```
+//Reading kernel_base...
+void* kernel_base = &((uint8_t*)__readmsr(0xC0000082))[-KERN_XFAST_SYSCALL];
+uint8_t* kernel_ptr = (uint8_t*)kernel_base;
+void** got_prison0 =   (void**)&kernel_ptr[KERN_PRISON_0];
+void** got_rootvnode = (void**)&kernel_ptr[KERN_ROOTVNODE];
+
+// sceSblACMgrIsSystemUcred
+uint64_t *sonyCred = (uint64_t *)(((char *)td_ucred) + 96);
+*sonyCred = 0xffffffffffffffff;
+// sceSblACMgrGetDeviceAccessType
+uint64_t *sceProcType = (uint64_t *)(((char *)td_ucred) + 88);
+*sceProcType = 0x3801000000000013; // Max access
+// sceSblACMgrHasSceProcessCapability
+uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
+*sceProcCap = 0xffffffffffffffff; // Sce Process
+```
+```
 // debug settings patches 5.01
 *(char *)(kernel_base + 0x1CD0686) |= 0x14;
 *(char *)(kernel_base + 0x1CD06A9) |= 3;
@@ -160,6 +179,26 @@ KERN_PMAP_PROTECT_P
 KERN_PMAP_STORE	
 KERN_REGMGR_SETINT	
 DT_HASH_SEGMENT		
+
+```
+```
+//Reading kernel_base...
+void* kernel_base = &((uint8_t*)__readmsr(0xC0000082))[-KERN_XFAST_SYSCALL];
+uint8_t* kernel_ptr = (uint8_t*)kernel_base;
+void** got_prison0 =   (void**)&kernel_ptr[KERN_PRISON_0];
+void** got_rootvnode = (void**)&kernel_ptr[KERN_ROOTVNODE];
+
+// sceSblACMgrIsSystemUcred
+uint64_t *sonyCred = (uint64_t *)(((char *)td_ucred) + 96);
+*sonyCred = 0xffffffffffffffff;
+// sceSblACMgrGetDeviceAccessType
+uint64_t *sceProcType = (uint64_t *)(((char *)td_ucred) + 88);
+*sceProcType = 0x3801000000000013; // Max access
+// sceSblACMgrHasSceProcessCapability
+uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
+*sceProcCap = 0xffffffffffffffff; // Sce Process
+```
+```
 
 #elif defined PS4_5_05  Thanks to #J0nni3
 
