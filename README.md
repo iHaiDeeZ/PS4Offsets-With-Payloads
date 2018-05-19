@@ -7,18 +7,14 @@
 
 # 4.05
 ```
-Will add soon.
+#define KERN_XFAST_SYSCALL 0x30EB30
+#define KERN_PROCESS_ASLR 0x2862D6
+#define KERN_PRISON_0 0xF26010
+#define KERN_ROOTVNODE 0x206D250
+#define KERN_PTRACE_CHECK_1 0xAC2F1
+#define KERN_PTRACE_CHECK_2 0xAC6A2
 ```
-
-# 4.55  
-``` 
-//4.55 KERN
-#define	KERN_XFAST_SYSCALL 0x3095D0
-#define KERN_PROCESS_ASLR 0x1BA559
-#define KERN_PRISON_0 0x10399B0
-#define KERN_ROOTVNODE 0x21AFA30
-#define KERN_PTRACE_CHECK 0x17D2C1
-
+```
 //Reading kernel_base...
 void* kernel_base = &((uint8_t*)__readmsr(0xC0000082))[-KERN_XFAST_SYSCALL];
 uint8_t* kernel_ptr = (uint8_t*)kernel_base;
@@ -34,7 +30,40 @@ uint64_t *sceProcType = (uint64_t *)(((char *)td_ucred) + 88);
 // sceSblACMgrHasSceProcessCapability
 uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
 *sceProcCap = 0xffffffffffffffff; // Sce Process
+```
+```
 
+Will add more soon.
+```
+
+# 4.55  
+``` 
+//4.55 KERN
+#define	KERN_XFAST_SYSCALL 0x3095D0
+#define KERN_PROCESS_ASLR 0x1BA559
+#define KERN_PRISON_0 0x10399B0
+#define KERN_ROOTVNODE 0x21AFA30
+#define KERN_PTRACE_CHECK 0x17D2C1
+
+```
+```
+//Reading kernel_base...
+void* kernel_base = &((uint8_t*)__readmsr(0xC0000082))[-KERN_XFAST_SYSCALL];
+uint8_t* kernel_ptr = (uint8_t*)kernel_base;
+void** got_prison0 =   (void**)&kernel_ptr[KERN_PRISON_0];
+void** got_rootvnode = (void**)&kernel_ptr[KERN_ROOTVNODE];
+
+// sceSblACMgrIsSystemUcred
+uint64_t *sonyCred = (uint64_t *)(((char *)td_ucred) + 96);
+*sonyCred = 0xffffffffffffffff;
+// sceSblACMgrGetDeviceAccessType
+uint64_t *sceProcType = (uint64_t *)(((char *)td_ucred) + 88);
+*sceProcType = 0x3801000000000013; // Max access
+// sceSblACMgrHasSceProcessCapability
+uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
+*sceProcCap = 0xffffffffffffffff; // Sce Process
+```
+```
 // debug settings FULL
 kernelBase[0x1B6D086] |= 0x14;
 kernelBase[0x1B6D0A9] |= 0x3;
