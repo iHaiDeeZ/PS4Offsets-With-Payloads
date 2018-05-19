@@ -230,6 +230,8 @@ uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
 *sceProcCap = 0xffffffffffffffff; // Sce Process
 ```
 ```
+//UART Enabler 5.05 Thanks to @DiwiDog // https://twitter.com/diwidog/status/996362528312647680
+*(char *)(kernel_base + 0x09ECEB0) = 0;
 
 #elif defined PS4_5_05  Thanks to #J0nni3
 
