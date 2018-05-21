@@ -139,6 +139,7 @@ uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
 *sceProcCap = 0xffffffffffffffff; // Sce Process
 ```
 ```
+  
 // debug settings patches 5.01
 *(char *)(kernel_base + 0x1CD0686) |= 0x14;
 *(char *)(kernel_base + 0x1CD06A9) |= 3;
@@ -155,6 +156,13 @@ uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
 
 // disable pfs signature 5.01
 *(uint32_t *)(kernel_base + 0x6A2320) = 0x90C3C031;
+
+// flatz enable RIFs 5.01
+  *(uint32_t *)(kernel_base + 0x64AED0) = 0x90C301B0;
+  *(uint32_t *)(kernel_base + 0x64AEF0) = 0x90C301B0;
+  
+// enable perm browser 5.01
+sceRegMgrSetInt(0x3C040000, 0, 0, 0, 0);
 
 // enable mmap of all SELF 5.01
 *(uint8_t*)(kernel_base + 0x117B0) = 0xB0;
