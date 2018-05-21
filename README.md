@@ -269,7 +269,5 @@ Massive thanks to the following:
 
 - [qwertyoruiopz](https://twitter.com/qwertyoruiopz)
 - [Flatz](https://twitter.com/flat_z)
-- Anonymous
-
-- [DarkElement](https://twitter.com/zordon605)
-- [Vultra](https://twitter.com/C0rpVultra)
+- SpecterDev
+- Many others
