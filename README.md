@@ -244,27 +244,30 @@ uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
 //UART Enabler 5.05 Thanks to @DiwiDog // https://twitter.com/diwidog/status/996362528312647680
 *(char *)(kernel_base + 0x09ECEB0) = 0;
 
+// debug settings patches 5.05
+*(char *)(kernel_base + 0x1CD0686) |= 0x14;
+*(char *)(kernel_base + 0x1CD06A9) |= 3;
+*(char *)(kernel_base + 0x1CD06AA) |= 1;
+*(char *)(kernel_base + 0x1CD06C8) |= 1;
+
+// debug menu error patches 5.05
+*(uint32_t *)(kernel_base + 0x4F9048) = 0;
+*(uint32_t *)(kernel_base + 0x4FA15C) = 0;
+
 // enable mmap of all SELF 5.05
-	*(uint8_t*)(kernel_base + 0x117B0) = 0xB8;
-	*(uint8_t*)(kernel_base + 0x117B1) = 0x01;
-	*(uint8_t*)(kernel_base + 0x117B2) = 0x00;
-	*(uint8_t*)(kernel_base + 0x117B3) = 0x00;
-	*(uint8_t*)(kernel_base + 0x117B4) = 0x00;
-	*(uint8_t*)(kernel_base + 0x117B5) = 0xC3;
-	
+*(uint8_t*)(kernel_base + 0x117B0) = 0xB0;
+*(uint8_t*)(kernel_base + 0x117B1) = 0x01;
+*(uint8_t*)(kernel_base + 0x117B2) = 0xC3;
 
-	*(uint8_t*)(kernel_base + 0x117C0) = 0xB8;
-	*(uint8_t*)(kernel_base + 0x117C1) = 0x01;
-	*(uint8_t*)(kernel_base + 0x117C2) = 0x00;
-	*(uint8_t*)(kernel_base + 0x117C3) = 0x00;
-	*(uint8_t*)(kernel_base + 0x117C4) = 0x00;
-	*(uint8_t*)(kernel_base + 0x117C5) = 0xC3;
+*(uint8_t*)(kernel_base + 0x117C0) = 0xB0;
+*(uint8_t*)(kernel_base + 0x117C1) = 0x01;
+*(uint8_t*)(kernel_base + 0x117C2) = 0xC3;
 
-	(uint8_t)(kernel_base + 0x13F03F) = 0x31;
-	(uint8_t)(kernel_base + 0x13F040) = 0xC0;
-	(uint8_t)(kernel_base + 0x13F041) = 0x90;
-	(uint8_t)(kernel_base + 0x13F042) = 0x90;
-	(uint8_t)(kernel_base + 0x13F043) = 0x90;
+*(uint8_t*)(kernel_base + 0x13F03F) = 0x31;
+*(uint8_t*)(kernel_base + 0x13F040) = 0xC0;
+*(uint8_t*)(kernel_base + 0x13F041) = 0x90;
+*(uint8_t*)(kernel_base + 0x13F042) = 0x90;
+*(uint8_t*)(kernel_base + 0x13F043) = 0x90;
 
 #elif defined PS4_5_05  Thanks to #J0nni3
 
