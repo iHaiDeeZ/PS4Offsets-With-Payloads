@@ -216,11 +216,11 @@ KERN_PMAP_PROTECT	0x2E3090
 KERN_PROCESS_ASLR 0x194875 // Thanks to J00ni3 - Needing Verification
 KERN_PTRACE_CHECK 0x30D9C3 // Thanks to J00ni3 - Needing Verification
 
-KERN_PMAP_PROTECT_P	
-KERN_PMAP_STORE	
-KERN_REGMGR_SETINT
+KERN_PMAP_PROTECT	0x2E3090
+KERN_PMAP_PROTECT_P	0x2E30D4
+KERN_PMAP_STORE		0x22CB570
 
-DT_HASH_SEGMENT		0xB1D820 //4.55 But Works on 5.05
+DT_HASH_SEGMENT		0xB5EF30
 
 ```
 ```
@@ -268,6 +268,12 @@ uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
 *(uint8_t*)(kernel_base + 0x13F041) = 0x90;
 *(uint8_t*)(kernel_base + 0x13F042) = 0x90;
 *(uint8_t*)(kernel_base + 0x13F043) = 0x90;
+
+// flatz disable pfs signature check 5.05
+*(uint32_t *)(kernel_base + 0x6A2700) = 0x90C3C031;
+// flatz enable debug RIFs 5.05
+*(uint32_t *)(kernel_base + 0x64B2B0) = 0x90C301B0;
+*(uint32_t *)(kernel_base + 0x64B2D0) = 0x90C301B0;
 
 #elif defined PS4_5_05  Thanks to #J0nni3
 
