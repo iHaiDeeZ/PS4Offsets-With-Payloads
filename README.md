@@ -13,6 +13,7 @@
 #define KERN_ROOTVNODE 0x206D250
 #define KERN_PTRACE_CHECK_1 0xAC2F1
 #define KERN_PTRACE_CHECK_2 0xAC6A2
+#define KERNEL_REGMGR_SETINT 0x4CEAB0
 ```
 ```
 //Reading kernel_base...
@@ -32,6 +33,10 @@ uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
 *sceProcCap = 0xffffffffffffffff; // Sce Process
 ```
 ```
+//Perm Browser Patch - CrazyVoids 
+uint64_t *(sceRegMgrSetInt)(uint32_t regId, int value) = NULL;
+sceRegMgrSetInt = (void *)&ptrKernel[KERNEL_REGMGR_SETINT];
+sceRegMgrSetInt(0x3C040000, 0);
 
 Will add more soon.
 ```
@@ -162,6 +167,8 @@ uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
   *(uint32_t *)(kernel_base + 0x64AEF0) = 0x90C301B0;
   
 // enable perm browser 5.01
+uint64_t *(sceRegMgrSetInt)(uint32_t regId, int value) = NULL;
+sceRegMgrSetInt = (void *)&ptrKernel[KERNEL_REGMGR_SETINT];
 sceRegMgrSetInt(0x3C040000, 0, 0, 0, 0);
 
 // enable mmap of all SELF 5.01
